@@ -11,24 +11,15 @@ from schemas.wait_list_schema import list_serial
 
 app = FastAPI()
 
-# CORS - Origins
-origins = [
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:4173",
-    "http://localhost:4174",
-    "http://localhost:3000",
-    "https://talk-landing-page.vercel.app/"
-]
-
 # CORS - Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
 
 @app.get("/waitlist")
 async def get_wait_list():
